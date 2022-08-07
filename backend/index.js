@@ -12,7 +12,8 @@ dotenv.config();
 const options = {
     info: {
       version: '1.0.0',
-      title: 'Albums store',
+      title: 'MRL Website API',
+      description: 'Base MRL Website API.',
       license: {
         name: 'MIT',
       },
