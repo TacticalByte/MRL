@@ -17,19 +17,6 @@ const sqlConfig = {
       }
   }
 
-const GetAccounts = async () => {
-    try{
-        let pool = await db.connect(sqlConfig);
-        let result = await pool.request()
-        .query('SELECT * FROM BAD.ACCOUNTS');
-
-    console.log(result);
-    }
-    catch(err){
-        console.error(`ERROR IN DataAccess: ${err}`);
-    }
-}
-
 const ExecuteStoredProcedure = async(spName, params) => {
     try{
         let pool = await db.connect(sqlConfig);
