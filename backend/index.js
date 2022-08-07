@@ -5,15 +5,15 @@ const server = express();
 
 dotenv.config();
 const SwaggerOptions = require('./services/SwaggerConfiguration');
-const DataAccess = require('./services/DataAccess');
 const RequestLogger = require('./middlewares/RequestLogger');
 
 const AccountsController = require('./controllers/AccountsController');
 const PlayerAccountController = require('./controllers/PlayerAccountController');
 const UserTypeController = require('./controllers/UserTypeController');
 
-expressJSDocSwagger(server)(SwaggerOptions);
+expressJSDocSwagger(server)(SwaggerOptions.options);
 
+server.use(express.json());
 server.use(RequestLogger);
 server.use('/accounts',AccountsController);
 server.use('/player',PlayerAccountController);

@@ -27,6 +27,7 @@ const ExecuteStoredProcedure = async(spName, params) => {
         }
         const response = await request.execute(spName);
         console.log(response);
+        return response;
     }
     catch(err){
         console.error(`ERROR IN ExecuteStoredProcedure: ${err}`);

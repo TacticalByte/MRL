@@ -14,7 +14,7 @@ const options = {
       },
     },
     baseDir: __dirname,
-    filesPattern: './controllers/*.js',
+    filesPattern: '../controllers/*.js',
   };
 
-  module.exports = options;
+  module.exports = {options};
