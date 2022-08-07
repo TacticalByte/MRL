@@ -3,6 +3,7 @@ const express = require('express');
 const expressJSDocSwagger= require('express-jsdoc-swagger');
 const server = express();
 
+const RequestLogger = require('./middlewares/RequestLogger');
 const AccountsController = require('./controllers/AccountsController');
 const PlayerAccountController = require('./controllers/PlayerAccountController');
 const UserTypeController = require('./controllers/UserTypeController');
@@ -29,6 +30,8 @@ const options = {
   };
 
 expressJSDocSwagger(server)(options);
+
+server.use(RequestLogger);
 
 server.use('/accounts',AccountsController);
 server.use('/player',PlayerAccountController);
