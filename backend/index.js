@@ -3,12 +3,14 @@ const express = require('express');
 const expressJSDocSwagger= require('express-jsdoc-swagger');
 const server = express();
 
+dotenv.config();
+
 const RequestLogger = require('./middlewares/RequestLogger');
 const AccountsController = require('./controllers/AccountsController');
 const PlayerAccountController = require('./controllers/PlayerAccountController');
 const UserTypeController = require('./controllers/UserTypeController');
 
-dotenv.config();
+const DataAccess = require('./services/DataAccess');
 
 const options = {
     info: {
@@ -36,6 +38,11 @@ server.use(RequestLogger);
 server.use('/accounts',AccountsController);
 server.use('/player',PlayerAccountController);
 server.use('/usertype',UserTypeController);
+
+server.get('/', (req,res) =>{
+  DataAccess.GetAccounts();
+  res.send('executed!');
+})
 
 server.listen(process.env.SERVER_PORT, () =>{
     console.log(`Server running at localhost, port: ${process.env.SERVER_PORT}`);
