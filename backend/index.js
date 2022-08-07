@@ -40,7 +40,12 @@ server.use('/player',PlayerAccountController);
 server.use('/usertype',UserTypeController);
 
 server.get('/', (req,res) =>{
-  DataAccess.GetAccounts();
+  let params = {
+    Property1: 1,
+    Property2: 2
+  }
+  DataAccess.ExecuteStoredProcedure('BAD.SP_GET_ACCOUNT',{Email: 'mmbarrerae@gmail.com'});
+  // DataAccess.GetAccounts();
   res.send('executed!');
 })
 

@@ -1,3 +1,4 @@
+const { request } = require('express');
 const db = require('mssql');
 
 const sqlConfig = {
@@ -11,7 +12,7 @@ const sqlConfig = {
       idleTimeoutMillis: 30000
     },
     options: {
-        encrypt: false, // for azure
+        encrypt: false,
         trustServerCertificate: true // change to true for local dev / self-signed certs
       }
   }
@@ -29,4 +30,20 @@ const GetAccounts = async () => {
     }
 }
 
-module.exports = {GetAccounts}
+const ExecuteStoredProcedure = async(spName, params) => {
+    try{
+        let pool = await db.connect(sqlConfig);
+        let request = await pool.request();
+
+        for (const key of Object.keys(params)) {
+            request.input(key,params[key]);
+        }
+        const response = await request.execute(spName);
+        console.log(response);
+    }
+    catch(err){
+        console.error(`ERROR IN ExecuteStoredProcedure: ${err}`);
+    }
+};
+
+module.exports = {GetAccounts,ExecuteStoredProcedure}

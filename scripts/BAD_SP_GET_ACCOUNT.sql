@@ -1,0 +1,20 @@
+USE MRL 
+GO
+IF OBJECT_ID('BAD.SP_GET_ACCOUNT') IS NOT NULL
+    BEGIN
+        DROP PROCEDURE BAD.SP_GET_ACCOUNT
+    END
+GO
+CREATE PROCEDURE BAD.SP_GET_ACCOUNT @Email NVARCHAR(300)
+AS
+BEGIN
+    IF @email IS NOT NULL
+        BEGIN
+            SELECT * FROM BAD.Accounts
+            WHERE Email = @Email
+        END
+    ELSE
+        BEGIN
+            SELECT * FROM BAD.Accounts
+        END
+END
