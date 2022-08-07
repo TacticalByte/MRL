@@ -33,4 +33,4 @@ const ExecuteStoredProcedure = async(spName, params) => {
     }
 };
 
-module.exports = {GetAccounts,ExecuteStoredProcedure}
+module.exports = {ExecuteStoredProcedure}
