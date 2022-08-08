@@ -66,6 +66,7 @@ GO
 CREATE TABLE BAD.UserType(
     UserTypeID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     UserType NVARCHAR(100) NOT NULL,
+    [Status] VARCHAR(10) NOT NULL,-- Active, Inactive, Banned, etc
     CreationDate DATETIME NOT NULL DEFAULT GETDATE(),
     CreatedBy NVARCHAR(100) NOT NULL DEFAULT USER_NAME(),
     ModificationDate DATETIME NULL,
@@ -306,6 +307,7 @@ CREATE TABLE BHD.UserTypeHistory(
     UserTypeHistoryID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     UserTypeID INT,
     UserType NVARCHAR(100) NOT NULL,
+    [Status] VARCHAR(10) NOT NULL,-- Active, Inactive, Banned, etc
     CreationDate DATETIME NOT NULL DEFAULT GETDATE(),
     CreatedBy NVARCHAR(100) NOT NULL DEFAULT USER_NAME(),
     ModificationDate DATETIME NULL,

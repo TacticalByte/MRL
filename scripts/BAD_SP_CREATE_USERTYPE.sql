@@ -5,7 +5,7 @@ IF OBJECT_ID('BAD.SP_CREATE_USERTYPE') IS NOT NULL
         DROP PROCEDURE BAD.SP_CREATE_USERTYPE
     END
 GO
-CREATE PROCEDURE BAD.SP_CREATE_USERTYPE @UserType NVARCHAR(100), @CreationDate DATETIME, @CreatedBy NVARCHAR(100)
+CREATE PROCEDURE BAD.SP_CREATE_USERTYPE @UserType NVARCHAR(100), @Status VARCHAR(10), @CreationDate DATETIME, @CreatedBy NVARCHAR(100)
 AS
 BEGIN
     BEGIN TRY
@@ -28,8 +28,8 @@ BEGIN
 
     IF @UserTypeExists = 0
         BEGIN
-            INSERT INTO BAD.UserType(UserType,CreationDate,CreatedBy)
-            VALUES(@UserType, @CreationDate, @CreatedBy)
+            INSERT INTO BAD.UserType(UserType,[Status],CreationDate,CreatedBy)
+            VALUES(@UserType,@Status,@CreationDate,@CreatedBy)
 
             SELECT 
                 CONCAT('UserType "',@UserType,'" created succesfully!')AS [MESSAGE],
@@ -53,4 +53,4 @@ END
 GO
 USE MRL
 GO
-EXEC BAD.SP_CREATE_USERTYPE 'TestUser', NULL, 'mbarrera'
+EXEC BAD.SP_CREATE_USERTYPE 'TestUser','ACTIVE', NULL, 'mbarrera'

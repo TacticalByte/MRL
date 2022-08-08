@@ -1,14 +1,14 @@
-USE MRL 
+USE MRL
 GO
-IF OBJECT_ID('BAD.SP_UPDATE_USERTYPE') IS NOT NULL
+IF OBJECT_ID('BAD.SP_DELETE_USERTYPE') IS NOT NULL
     BEGIN
-        DROP PROCEDURE BAD.SP_UPDATE_USERTYPE
+        DROP PROCEDURE BAD.SP_DELETE_USERTYPE
     END
 GO
-CREATE PROCEDURE BAD.SP_UPDATE_USERTYPE @UserTypeID INT, @UserType NVARCHAR(100), @Status VARCHAR(10), @ModificationDate DATETIME, @ModifiedBy NVARCHAR(100)
+CREATE PROCEDURE BAD.SP_DELETE_USERTYPE @UserTypeID INT, @ModificationDate DATETIME, @ModifiedBy NVARCHAR(100)
 AS
 BEGIN
-     BEGIN TRY
+    BEGIN TRY
         DECLARE @UserTypeExists INT = 0
         DECLARE @ErrorMessage NVARCHAR(MAX) 
 
@@ -37,20 +37,17 @@ BEGIN
             WHERE UserTypeID = @UserTypeID
 
             UPDATE BAD.UserType SET
-            UserType = @UserType, 
-            [Status] = @Status,
-            ModificationDate = @ModificationDate,
-            ModifiedBy = @ModifiedBy
+            [Status] = 'DELETED'
             WHERE UserTypeID = @UserTypeID
 
             SELECT 
-                CONCAT('UserType with ID: "',@UserTypeID,'" updated succesfully!')AS [MESSAGE],
+                CONCAT('UserTypeID: "',@UserTypeID,'" deleted succesfully!')AS [MESSAGE],
                 '1' AS RESULT
         END
     ELSE
         BEGIN
             SELECT 
-                CONCAT('UserType with ID: "',@UserTypeID,'"  cannot be updated. Aborting update...')AS [MESSAGE],
+                CONCAT('UserTypeID: "',@UserTypeID,'" does not exists. Aborting deletion...')AS [MESSAGE],
                 '0' AS RESULT
         END
     END TRY
@@ -58,9 +55,7 @@ BEGIN
          SET @ErrorMessage = ERROR_MESSAGE()
 
         SELECT
-            CONCAT('BAD.SP_ADD_USERTYPE: Exception => ',@ErrorMessage) AS [MESSAGE],
+            CONCAT('BAD.SP_DELETE_USERTYPE: Exception => ',@ErrorMessage) AS [MESSAGE],
             '0' AS RESULT
     END CATCH
 END
-GO
-EXEC BAD.SP_UPDATE_USERTYPE 2,'UPDATED_USER','UPDATED', NULL, NULL
