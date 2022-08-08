@@ -6,8 +6,17 @@ const UserTypeController = express.Router();
  * UserType request object
  * @typedef {object} UserTypeRequest
  * @property {string} UserType.required - UserType Name
- * @property {string} CreationDate.optional - UserType CreationDate
- * @property {string} CreatedBy.optional- UserType CreatedBy
+ * @property {DateTime} CreationDate.optional - UserType CreationDate
+ * @property {string} CreatedBy.optional - UserType CreatedBy
+ */
+
+/**
+ * Update - UserType request object
+ * @typedef {object} UpdateUserTypeRequest
+ * @property {string} UserTypeID.required - UserType UserTypeID (Valid for Update/Deletion only)
+ * @property {string} UserType.required - UserType Name
+ * @property {DateTime} ModificationDate.optional -  UserType Modification
+ * @property {string} ModifiedBy.optional - UserType ModifiedBy
  */
 
  /**
@@ -19,22 +28,47 @@ const UserTypeController = express.Router();
  * @return {object} 200 - success response - application/json
  * @return {object} 400 - Bad request response
  */
-UserTypeController.post('/create',(req,res) => {
+UserTypeController.post('/create',async (req,res) => {
     try {
         let params = {
-            UserType: req.body.UserType ? req.body.UserType.trim() : null,
-            CreationDate: req.body.CreationDate ? req.body.CreationDate.trim() : null,
-            CreatedBy: req.body.CreatedBy ? req.body.CreatedBy.trim() : null
+            UserType: req.body.UserType ? req.body.UserType : null,
+            CreationDate: req.body.CreationDate ? req.body.CreationDate : null,
+            CreatedBy: req.body.CreatedBy ? req.body.CreatedBy : null
+        }
+        const result =  await db.ExecuteStoredProcedure('BAD.SP_CREATE_USERTYPE',params);
+        res.status(200).send(result);
+
+    } catch (error) {
+        console.error(`/usertype/Create Error: ${error}`);
+        res.status(500).send(error);
+    }
+});
+
+ /**
+ * PUT /usertype/update
+ * @summary Totally update an existent UserType for MRL website accounts 
+ * @security BasicAuth
+ * @tags UserType
+ * @param {UpdateUserTypeRequest} request.body.required - Update UserType Info
+ * @return {object} 200 - success response - application/json
+ * @return {object} 400 - Bad request response
+ */
+UserTypeController.put('/update',async (req,res) => {
+    try {
+        let params = {
+            UserTypeID: req.body.UserTypeID ? req.body.UserTypeID : null,
+            UserType: req.body.UserType ? req.body.UserType : null,
+            ModificationDate: req.body.ModificationDate ? req.body.ModificationDate : null,
+            ModifiedBy: req.body.ModifiedBy ? req.body.ModifiedBy : null
         }
 
-    console.log(JSON.stringify(params));
+    const result =  await db.ExecuteStoredProcedure('BAD.SP_UPDATE_USERTYPE',params);
+    res.status(200).send(result);
 
-    const result = db.ExecuteStoredProcedure('BAD.SP_CREATE_USERTYPE',params);
-    console.log(`Esta es la respuesta: ${JSON.stringify(result)}`);
     } catch (error) {
-        console.error(`/UserType/Create Error: ${error}`);
+        console.error(`/usertype/update Error: ${error}`);
+        res.status(500).send(error);
     }
-    res.json('New UserType created');
 });
 
 module.exports = UserTypeController;

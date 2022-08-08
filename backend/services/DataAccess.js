@@ -1,11 +1,11 @@
-const { request } = require('express');
-const db = require('mssql');
+ const db = require('mssql');
 
 const sqlConfig = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     server: process.env.DB_SERVER,
+    parseJson: true,
     pool: {
       max: 10,
       min: 0,
@@ -25,9 +25,8 @@ const ExecuteStoredProcedure = async(spName, params) => {
         for (const key of Object.keys(params)) {
             request.input(key,params[key]);
         }
-        const response = await request.execute(spName);
-        console.log(response);
-        return response;
+        const result = await request.execute(spName);
+        return result.recordsets[0];
     }
     catch(err){
         console.error(`ERROR IN ExecuteStoredProcedure: ${err}`);
