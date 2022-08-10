@@ -16,7 +16,7 @@ expressJSDocSwagger(server)(SwaggerOptions.options);
 server.use(express.json());
 server.use(RequestLogger);
 server.use('/accounts',AccountsController);
-server.use('/player',PlayerAccountController);
+server.use('/playeraccount',PlayerAccountController);
 server.use('/usertype',UserTypeController);
 
 server.listen(process.env.SERVER_PORT, () =>{
