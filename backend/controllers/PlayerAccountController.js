@@ -67,7 +67,6 @@ const PlayerAccountController = express.Router();
 PlayerAccountController.post('/create', async (req,res)=>{
     try {
         let params = {
-            PlayerAccountID: req.body.PlayerAccountID ? req.body.PlayerAccountID : null,
             AccountID: req.body.AccountID ? req.body.AccountID : null,
             SMCID: req.body.SMCID ? req.body.SMCID : null,
             Picture: req.body.Picture ? req.body.Picture : null,
