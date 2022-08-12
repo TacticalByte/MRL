@@ -413,6 +413,7 @@ INSERT INTO BGD.Mechas([Name],Picture,[Status],CreationDate,CreatedBy) VALUES('S
 INSERT INTO BGD.Mechas([Name],Picture,[Status],CreationDate,CreatedBy) VALUES('JOJO',null,'ACTIVE',GETDATE(),USER_NAME())
 INSERT INTO BGD.Mechas([Name],Picture,[Status],CreationDate,CreatedBy) VALUES('Skyfall',null,'ACTIVE',GETDATE(),USER_NAME())
 GO
+INSERT INTO BAD.Memberships([Name],Price,Discount,[Status],CreationDate,CreatedBy) VALUES('FREE_TIER_MEMBERSHIP',0,0,'ACTIVE',GETDATE(),USER_NAME())
 
 -- /*Dropping database*/
 -- USE MASTER
