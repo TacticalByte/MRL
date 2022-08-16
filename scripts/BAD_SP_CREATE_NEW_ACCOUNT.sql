@@ -1,11 +1,11 @@
 USE MRL 
 GO
-IF OBJECT_ID('BAD.SP_CREATE_NEW_ACCOUNT') IS NOT NULL
+IF OBJECT_ID('BAD.SP_CREATE_ACCOUNT') IS NOT NULL
     BEGIN
-        DROP PROCEDURE  BAD.SP_CREATE_NEW_ACCOUNT
+        DROP PROCEDURE  BAD.SP_CREATE_ACCOUNT
     END
 GO
-CREATE PROCEDURE BAD.SP_CREATE_NEW_ACCOUNT @FirstName NVARCHAR(100),@LastName NVARCHAR(100),@BirthDate DATETIME,@Email NVARCHAR(300),@Password NVARCHAR(MAX),@FacebookAccount NVARCHAR(300),@TwitterAccount NVARCHAR(300),@DiscordAccount NVARCHAR(300),@YoutubeAccount NVARCHAR(300),@SteamAccount NVARCHAR(300),@Status VARCHAR(10),@IsValidated BIT,@UserTypeID INT,@MembershipID INT,@CreationDate DATETIME,@CreatedBy NVARCHAR(100)
+CREATE PROCEDURE BAD.SP_CREATE_ACCOUNT @FirstName NVARCHAR(100),@LastName NVARCHAR(100),@BirthDate DATETIME,@Email NVARCHAR(300),@Password NVARCHAR(MAX),@FacebookAccount NVARCHAR(300),@TwitterAccount NVARCHAR(300),@DiscordAccount NVARCHAR(300),@YoutubeAccount NVARCHAR(300),@SteamAccount NVARCHAR(300),@Status VARCHAR(10),@IsValidated BIT,@UserTypeID INT,@MembershipID INT,@CreationDate DATETIME,@CreatedBy NVARCHAR(100)
 AS
 BEGIN
     DECLARE @AccountExists INT = 0
@@ -52,15 +52,15 @@ BEGIN
     BEGIN CATCH
         SET @ErrorMessage = ERROR_MESSAGE()
         SELECT
-            CONCAT('BAD.SP_CREATE_NEW_ACCOUNT: Exception => ',@ErrorMessage) AS [MESSAGE],
+            CONCAT('BAD.SP_CREATE_ACCOUNT: Exception => ',@ErrorMessage) AS [MESSAGE],
             '0' AS RESULT
     END CATCH
 END
 GO
 
-USE MRL
-GO
-EXEC BAD.SP_CREATE_NEW_ACCOUNT 'MARCOS','BARRERA','1992-10-10 00:00:00','mmbarrerae@gmail.com','asdasd',
-                                NULL, NULL, NULL, 
-                                NULL, NULL, 'ACTIVE',0, 1,
-                                1,NULL,'mbarrera'
+-- USE MRL
+-- GO
+-- EXEC BAD.SP_CREATE_ACCOUNT 'MARCOS','BARRERA','1992-10-10 00:00:00','mmbarrerae@gmail.com','asdasd',
+--                                 NULL, NULL, NULL, 
+--                                 NULL, NULL, 'ACTIVE',0, 1,
+--                                 1,NULL,'mbarrera'
