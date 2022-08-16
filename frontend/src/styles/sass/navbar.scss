@@ -1,0 +1,27 @@
+@use "theme.scss";
+
+nav{
+    height: 6vh;
+    width: 100%;
+    margin: 0;
+    background-color: theme.$primary-black;
+    color: theme.$primary-white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a{
+        margin-left: theme.$margin-base;
+        margin-right: theme.$margin-base;
+        color: theme.$primary-white;
+        text-decoration: none;
+    }
+    a:hover{
+        margin-left: theme.$margin-base;
+        margin-right: theme.$margin-base;
+        color: theme.$primary-white;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-bottom-color: theme.$primary-red;
+    }
+}

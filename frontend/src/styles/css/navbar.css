@@ -1,0 +1,27 @@
+@import url("http://fonts.cdnfonts.com/css/neue-haas-grotesk-text-pro");
+nav {
+  height: 6vh;
+  width: 100%;
+  margin: 0;
+  background-color: #000000;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+nav a:hover {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  color: #FFFFFF;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-bottom-color: #EC0606;
+}
+
+/*# sourceMappingURL=navbar.css.map */

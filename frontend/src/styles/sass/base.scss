@@ -1,0 +1,10 @@
+@use "theme.scss";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    max-width: 100vw;
+    max-height: 100%;
+    font-family: theme.$font-families;
+}

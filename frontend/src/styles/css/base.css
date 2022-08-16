@@ -1,0 +1,11 @@
+@import url("http://fonts.cdnfonts.com/css/neue-haas-grotesk-text-pro");
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+  max-width: 100vw;
+  max-height: 100%;
+  font-family: "Neue Haas Grotesk Text Pro", sans-serif;
+}
+
+/*# sourceMappingURL=base.css.map */
