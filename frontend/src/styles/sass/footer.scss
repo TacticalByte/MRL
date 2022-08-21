@@ -1,0 +1,38 @@
+@use 'theme.scss';
+
+.footer-base-container{
+    height: 5vh;
+    width: 100%;
+    background-color: theme.$primary-black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-icons-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    
+    a{
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+    }
+    .footer-icon-style{
+        height: 3vh;
+        width: auto;
+        display: flex;
+    }
+}
+
+
+.footer-text-container{
+    display:flex;
+    #divCopyright{
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+        color: theme.$primary-white;
+    }
+}

@@ -1,0 +1,7 @@
+@use 'theme.scss';
+
+.welcome-base-container{
+    height: 89vh;
+    width: 100%;
+    background-color: theme.$primary-white;
+}

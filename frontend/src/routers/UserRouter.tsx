@@ -1,11 +1,18 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Welcome from "../views/Welcome";
+import Navbar from "../components/Navbar";
+import Base from "../views/Base";
 
 const UserRouter = () => {
     return(
         <BrowserRouter>
-            <Route path="/" element={<Welcome/>} />
+            <Route path="/" element={
+                <Base 
+                    Navbar= {<Navbar/>}
+                    Body = {null}
+                    Footbar = {null}
+                    />
+                } />
         </BrowserRouter>
     )
 }
