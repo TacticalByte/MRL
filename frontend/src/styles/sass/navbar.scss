@@ -1,7 +1,7 @@
 @use "theme.scss";
 
 nav{
-    height: 6vh;
+    height: 4vh;
     width: 100%;
     margin: 0;
     background-color: theme.$primary-black;
@@ -11,17 +11,24 @@ nav{
     align-items: center;
 
     a{
-        margin-left: theme.$margin-base;
-        margin-right: theme.$margin-base;
+        margin-left: theme.$margin-base *2;
+        margin-right: theme.$margin-base *2;
         color: theme.$primary-white;
         text-decoration: none;
+        .selected{
+            font-weight: 900;
+        }
     }
     a:hover{
-        margin-left: theme.$margin-base;
-        margin-right: theme.$margin-base;
+        margin-left: theme.$margin-base *2;
+        margin-right: theme.$margin-base *2;
         color: theme.$primary-white;
         border-bottom-width: 3px;
         border-bottom-style: solid;
         border-bottom-color: theme.$primary-red;
+    }
+    .nav-main-logo{
+        height: 4vh;
+        width: auto;
     }
 }

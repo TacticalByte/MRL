@@ -1,6 +1,6 @@
 @import url("http://fonts.cdnfonts.com/css/neue-haas-grotesk-text-pro");
 nav {
-  height: 6vh;
+  height: 4vh;
   width: 100%;
   margin: 0;
   background-color: #000000;
@@ -10,18 +10,25 @@ nav {
   align-items: center;
 }
 nav a {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   color: #FFFFFF;
   text-decoration: none;
 }
+nav a .selected {
+  font-weight: 900;
+}
 nav a:hover {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   color: #FFFFFF;
   border-bottom-width: 3px;
   border-bottom-style: solid;
   border-bottom-color: #EC0606;
+}
+nav .nav-main-logo {
+  height: 4vh;
+  width: auto;
 }
 
 /*# sourceMappingURL=navbar.css.map */
